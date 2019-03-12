@@ -23,9 +23,6 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/Login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	final String usernameDB="root";
-	final String passwordDB="root";
-	final String dbUrl ="jdbc:mysql://localhost/phone_store?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -48,63 +45,54 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String login=request.getParameter("login");
-		String password=request.getParameter("password");
-		String sql="select login,password from user where login=? and password=?";
-		String dbLogin=null;
-		String dbPassword=null;
+		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		
-	try {
-		Connection conn=DriverManager.getConnection(dbUrl,usernameDB,passwordDB);
-		PreparedStatement ps = conn.prepareStatement(sql);
-		ps.setString(1,login);
-		ps.setString(2,password);
-		ResultSet rs=ps.executeQuery();
-		while(rs.next())
-		{
-			dbLogin=rs.getString(1);
-			dbPassword=rs.getString(2);
-		}
-		if(login.equals(dbLogin)&&password.equals(dbPassword))
-		{
-			System.out.println("Zostales poprawnie zalogowany");
-			conn.close();
-			HttpSession session = request.getSession();
-			session.setAttribute("user",login);
-			session.setMaxInactiveInterval(30*60);
-			Cookie userName=new Cookie("user",login);
-			userName.setMaxAge(30*60);
-			response.addCookie(userName);
-			response.sendRedirect("after_auth.jsp");
-		}
-		else
-		{
-			RequestDispatcher rd = request.getRequestDispatcher("login.html");
-			PrintWriter out= response.getWriter();
-			out.println("<font color=black>Either user name or password is wrong.</font>");
-			rd.include(request, response);
-			conn.close();
-		}
-		
-		
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	
-		
-		
-		
-		
-		
-		
-		
-		
-	}
+			Connection conn = DriverManager.getConnection(Database.getDbUrl(),Database.getUsernameDB(),Database.getPasswordDB());
 
+			String login=request.getParameter("login");
+			String password=request.getParameter("password");
+			String query="select login,password from user where login=? and password=?";
+			String dbLogin=null;
+			String dbPassword=null;
+			
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1,login);
+			ps.setString(2,password);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				dbLogin=rs.getString(1);
+				dbPassword=rs.getString(2);
+			}
+			if(login.equals(dbLogin)&&password.equals(dbPassword))
+			{
+				System.out.println("Zostales poprawnie zalogowany");
+				conn.close();
+				HttpSession session = request.getSession();
+				session.setAttribute("user",login);
+				session.setMaxInactiveInterval(30*60);
+				Cookie userName=new Cookie("user",login);
+				userName.setMaxAge(30*60);
+				response.addCookie(userName);
+				response.sendRedirect("after_auth.jsp");
+			}
+			else
+			{
+				conn.close();
+				RequestDispatcher rd = request.getRequestDispatcher("login.html");
+				PrintWriter out= response.getWriter();
+				System.out.println("Bledny login lub haslo");
+				out.println("<font color=black><center><strong>Either user name or password is wrong.</strong></center></font>");
+				rd.include(request, response);
+			}
+		
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}catch(ClassNotFoundException ce) {
+			
+		}
+	}
 }

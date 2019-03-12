@@ -33,8 +33,18 @@ for(Cookie cookie : cookies){
 }
 }
 %>
+<%@include  file="index.html" %>
+<div id="icon_user" style="margin-bottom: 20px">
 
+  <p>Hello <%=userName %></p>
+  <p>ID sesji: ID=<%=sessionID %></p>
+  <p>Get started shopping!</p>
 
+  <i class="large material-icons">account_circle</i>
+  <i class="large material-icons">shopping_cart</i>
+  
+</div>  
+<!-- 
  <nav role="navigation" class="nav">
     <ul class="nav-items">
         <li class="nav-item">
@@ -75,15 +85,15 @@ for(Cookie cookie : cookies){
 <h1> Toy Land</h1>
 
 <p>The best surprise for Your Children!</p>
-<p> Hello Hi <%=userName %> </p> 
-<p> Twoja sesja: ID=<%=sessionID %></p>
+
 
 </div>
 
 
 <div id="icon_user">
 
-  <p>Hello ?</p>
+  <p>Hello <%=userName %></p>
+  <p>ID sesji: ID=<%=sessionID %></p>
   <p>Get started shopping!</p>
 
   <i class="large material-icons">account_circle</i>
@@ -101,6 +111,6 @@ Toy Land 2019, All rights reserved
 </div>
 
 <script src="js/script.js"></script>
-
+!-->
 </body>
 </html>

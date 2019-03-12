@@ -47,34 +47,23 @@ public class Registration extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method s
-		try {
-			final String usernameDB="root";
-			final String passwordDB="root";
-			final String dbUrl ="jdbc:mysql://localhost/phone_store?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-			String name=request.getParameter("name");
-			String surname=request.getParameter("surname");
-			String email=request.getParameter("email");
-			String phone=request.getParameter("phone");
-			String login=request.getParameter("login");
-			String password=request.getParameter("password");
-			String repassword=request.getParameter("repassword");
-			String country=request.getParameter("country");
-			String city=request.getParameter("city");
-			String street=request.getParameter("street");
-			String street_number=request.getParameter("street_number");
-			String home_number=request.getParameter("home_number");
-			String postal_code=request.getParameter("postal_code");
-			
-			//String user=request.getParameter("username");
-			//session.putValue("username",user);
-			//String email=request.getParameter("email");
-			//String password=request.getParameter("password");
-			//String repassword=request.getParameter("repassword");
-			
 			try {
-				
 				Class.forName("com.mysql.jdbc.Driver");
-				Connection conn=DriverManager.getConnection(dbUrl,usernameDB,passwordDB);
+				String name=request.getParameter("name");
+				String surname=request.getParameter("surname");
+				String email=request.getParameter("email");
+				String phone=request.getParameter("phone");
+				String login=request.getParameter("login");
+				String password=request.getParameter("password");
+				String repassword=request.getParameter("repassword");
+				String country=request.getParameter("country");
+				String city=request.getParameter("city");
+				String street=request.getParameter("street");
+				String street_number=request.getParameter("street_number");
+				String home_number=request.getParameter("home_number");
+				String postal_code=request.getParameter("postal_code");
+				
+				Connection conn=DriverManager.getConnection(Database.getDbUrl(),Database.getUsernameDB(),Database.getPasswordDB());
 				//dodanie adresu
 				String query = "insert into address(country,city,street,street_number,home_number,postal_code) values(?,?,?,?,?,?)";
 				PreparedStatement ps=conn.prepareStatement(query);
@@ -130,12 +119,9 @@ public class Registration extends HttpServlet {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} catch(ClassNotFoundException ce) {
+				
 			}
-			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 }
