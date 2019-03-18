@@ -1,0 +1,94 @@
+package jdbc;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class Registration
+ */
+@WebServlet("/Registration")
+public class Registration extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Registration() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method s
+		try {
+			final String usernameDB="root";
+			final String passwordDB="root";
+			final String dbUrl ="jdbc:mysql://localhost/phone_store?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+			
+			String user=request.getParameter("username");
+			//session.putValue("username",user);
+			String email=request.getParameter("email");
+			String password=request.getParameter("password");
+			String repassword=request.getParameter("repassword");
+			
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection conn=DriverManager.getConnection(dbUrl,usernameDB,passwordDB);
+				//Statement st=conn.createStatement();
+				//ResultSet rs;
+				//int i=st.executeUpdate("insert into user(user_id,name,surname,email,phone,user_usertype_id,user_address_id) values("+2+","+user+",+"+user+","+email+","+password+","+1+","+2+")");
+				
+				String query = "insert into user(user_id,name,surname,email,phone,user_usertype_id,user_address_id) values(?,?,?,?,?,?,?)";
+				PreparedStatement ps=conn.prepareStatement(query);
+				ps.setLong(1,1);
+				ps.setString(2, email);
+				ps.setString(3, password);
+				ps.setString(4,repassword);
+				ps.setLong(5,1);
+				ps.setLong(6,1);
+				
+				ps.execute();
+				ps.close();
+				conn.close();
+				
+				
+				
+				
+				PrintWriter out = response.getWriter();
+				System.out.println("Zarejestrowany!");
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

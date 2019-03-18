@@ -1,0 +1,39 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Rejestracja</title>
+</head>
+<body>
+<%@page import="java.sql.*" %>
+<%@page import="javax.sql.*" %>
+<%@page import="java.util.*" %>
+<%
+final String usernameDB="root";
+final String passwordDB="root";
+final String dbUrl ="jdbc:mysql://localhost/phone_store?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+String user=request.getParameter("username");
+//session.putValue("username",user);
+String email=request.getParameter("email");
+String password=request.getParameter("password");
+String repassword=request.getParameter("repassword");
+try{
+Class.forName("com.mysql.jdbc.Driver");
+java.sql.Connection con=DriverManager.getConnection(dbUrl,usernameDB,passwordDB);
+Statement st=con.createStatement();
+ResultSet rs;
+int i=st.executeUpdate("insert into user(user_id,name,surname,email,phone,user_usertype_id,user_address_id) values("+2+","+user+",+"+user+","+email+","+password+","+1+","+2+")");
+System.out.println("Zarejestrowany!");
+}
+catch(Exception e)
+{
+System.out.println(e);	
+e.printStackTrace();
+}
+%>
+<a href="index.html">Login</a>
+<a href="after_auth.html">Dalej</a>
+</body>
+</html>
