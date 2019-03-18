@@ -1,3 +1,0 @@
-#Tomcat publish data
-#Mon Mar 18 13:23:31 CET 2019
-org.eclipse.jst.jee.server\:OnlineShop=C\:\\Programy\\Tomcat\\apache-tomcat-9.0.16\\wtpwebapps\\OnlineShop

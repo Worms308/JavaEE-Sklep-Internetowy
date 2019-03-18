@@ -1,7 +1,0 @@
-INDEX VERSION 1.4+C:\Users\KWrona\Desktop\ProjektSklep\JavaEE-Sklep-Internetowy\JavaEE-Sklep-Internetowy\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-3002381626.index
-3219198115.index
-3250912672.index
-896134721.index
-2546145519.index
-527198513.index
