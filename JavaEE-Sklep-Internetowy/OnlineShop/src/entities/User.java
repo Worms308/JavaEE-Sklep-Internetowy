@@ -1,58 +1,139 @@
 package entities;
 
-public class User {
-	
-	private int user_id;
-	private String name;
-	private String surname;
+import java.io.Serializable;
+import javax.persistence.*;
+import java.util.List;
+
+
+/**
+ * The persistent class for the user database table.
+ * 
+ */
+@Entity
+@Table(name="user")
+@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
+public class User implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int id;
 	private String email;
-	private String phone;
 	private String login;
+	private String name;
 	private String password;
+	private String phone;
+	private String surname;
+
+	//bi-directional many-to-one association to Address
+	@ManyToOne
+	@JoinColumn(name="user_address_id")
+	private Address address;
+
+	//bi-directional many-to-one association to Usertype
+	@ManyToOne
+	@JoinColumn(name="user_usertype_id")
+	private Usertype usertype;
+
+	//bi-directional many-to-one association to Sale
+	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)
+	private List<Sale> sales;
+
+
 	
-	
-	
-	public int getUser_id() {
-		return user_id;
+
+	public int getId() {
+		return this.id;
 	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+
+	public void setId(int id) {
+		this.id = id;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getSurname() {
-		return surname;
-	}
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
+
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+
 	public String getLogin() {
-		return login;
+		return this.login;
 	}
+
 	public void setLogin(String login) {
 		this.login = login;
 	}
-	public String getPassword() {
-		return password;
+
+	public String getName() {
+		return this.name;
 	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPassword() {
+		return this.password;
+	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
+	public String getPhone() {
+		return this.phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getSurname() {
+		return this.surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public Address getAddress() {
+		return this.address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public Usertype getUsertype() {
+		return this.usertype;
+	}
+
+	public void setUsertype(Usertype usertype) {
+		this.usertype = usertype;
+	}
+
+	public List<Sale> getSales() {
+		return this.sales;
+	}
+
+	public void setSales(List<Sale> sales) {
+		this.sales = sales;
+	}
+
+	public Sale addSale(Sale sale) {
+		getSales().add(sale);
+		sale.setUser(this);
+
+		return sale;
+	}
+
+	public Sale removeSale(Sale sale) {
+		getSales().remove(sale);
+		sale.setUser(null);
+
+		return sale;
+	}
+
 }
