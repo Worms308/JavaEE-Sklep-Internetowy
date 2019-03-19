@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.mysql.cj.Session;
+
 
 /**
  * Servlet implementation class Registration
@@ -122,7 +122,7 @@ public class Registration extends HttpServlet {
 				else
 				{
 					PrintWriter out= response.getWriter();
-					out.println("<font color=black>Has³a nie s¹ zgodne.</font>");
+					out.println("<font color=black>Hasï¿½a nie sï¿½ zgodne.</font>");
 					conn.close();
 				}
 		
