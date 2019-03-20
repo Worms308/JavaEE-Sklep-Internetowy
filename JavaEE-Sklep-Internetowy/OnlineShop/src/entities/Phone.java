@@ -144,18 +144,4 @@ public class Phone implements Serializable {
 		this.sales = sales;
 	}
 
-	public Sale addSale(Sale sale) {
-		getSales().add(sale);
-		sale.setPhone(this);
-
-		return sale;
-	}
-
-	public Sale removeSale(Sale sale) {
-		getSales().remove(sale);
-		sale.setPhone(null);
-
-		return sale;
-	}
-
 }

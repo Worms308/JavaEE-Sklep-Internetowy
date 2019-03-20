@@ -11,23 +11,18 @@ import java.util.List;
  */
 @Entity
 @Table(name="address")
-@NamedQuery(name="Address.findAll", query="SELECT a FROM Address a")
 public class Address implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="address_id")
-	private int addressId;
+	private int address_id;
 	private String city;
 	private String country;
-	@Column(name="home_number")
-	private String homeNumber;
-	@Column(name="postal_code")
-	private String postalCode;
+	private String home_number;
+	private String postal_code;
 	private String street;
-	@Column(name="street_number")
-	private String streetNumber;
+	private String street_number;
 
 	//bi-directional many-to-one association to User
 	@OneToMany(mappedBy="address", fetch=FetchType.EAGER)
@@ -36,11 +31,11 @@ public class Address implements Serializable {
 
 
 	public int getAddressId() {
-		return this.addressId;
+		return this.address_id;
 	}
 
 	public void setAddressId(int addressId) {
-		this.addressId = addressId;
+		this.address_id = addressId;
 	}
 
 	public String getCity() {
@@ -60,19 +55,19 @@ public class Address implements Serializable {
 	}
 
 	public String getHomeNumber() {
-		return this.homeNumber;
+		return this.home_number;
 	}
 
 	public void setHomeNumber(String homeNumber) {
-		this.homeNumber = homeNumber;
+		this.home_number = homeNumber;
 	}
 
 	public String getPostalCode() {
-		return this.postalCode;
+		return this.postal_code;
 	}
 
 	public void setPostalCode(String postalCode) {
-		this.postalCode = postalCode;
+		this.postal_code = postalCode;
 	}
 
 	public String getStreet() {
@@ -84,11 +79,11 @@ public class Address implements Serializable {
 	}
 
 	public String getStreetNumber() {
-		return this.streetNumber;
+		return this.street_number;
 	}
 
 	public void setStreetNumber(String streetNumber) {
-		this.streetNumber = streetNumber;
+		this.street_number = streetNumber;
 	}
 
 	public List<User> getUsers() {

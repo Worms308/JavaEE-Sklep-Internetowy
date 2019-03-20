@@ -5,13 +5,8 @@ import javax.persistence.*;
 import java.util.List;
 
 
-/**
- * The persistent class for the user database table.
- * 
- */
 @Entity
 @Table(name="user")
-@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -120,20 +115,6 @@ public class User implements Serializable {
 
 	public void setSales(List<Sale> sales) {
 		this.sales = sales;
-	}
-
-	public Sale addSale(Sale sale) {
-		getSales().add(sale);
-		sale.setUser(this);
-
-		return sale;
-	}
-
-	public Sale removeSale(Sale sale) {
-		getSales().remove(sale);
-		sale.setUser(null);
-
-		return sale;
 	}
 
 }
