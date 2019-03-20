@@ -35,8 +35,6 @@ public class User implements Serializable {
 	private List<Sale> sales;
 
 
-	
-
 	public int getId() {
 		return this.id;
 	}
