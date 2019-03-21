@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import entities.Sale;
+import entities.Address;
 import entities.User;
 import entities.Usertype;
 import utilities.MD5Creator;
@@ -25,13 +25,18 @@ public class UserDAO {
 				.getSingleResult();
 	return user;
 	}
-	
 
 	public User getUserByLogin(String login) {
 		User user = (User)manager.createQuery("SELECT u FROM user u WHERE u.login = :login")
 					.setParameter("login", login)
 					.getSingleResult();
 		return user;
+	}
+	
+	public List<User> getAllUser() {
+		@SuppressWarnings("unchecked")
+		List<User> result = manager.createQuery("SELECT u FROM user u").getResultList();
+		return result;
 	}
 	
 	public boolean addUser(User user, Usertype usertype) {
@@ -52,12 +57,28 @@ public class UserDAO {
 		}
 	}
 	
-	public List<Sale> getUserSales(User user) {
-		return user.getSales();
-	}
-	
 	public boolean removeUser(User user) {
-		//TODO implementacja
-		return false;
+		Address userAddress = user.getAddress();
+		boolean deleteAddress = false;
+		
+		if (userAddress.getUsers().size() <= 1) {
+			deleteAddress = true;
+		}
+		
+		EntityTransaction transaction = manager.getTransaction();
+		try {
+			transaction.begin();
+			manager.remove(user);
+			if (deleteAddress)
+				manager.remove(userAddress);
+			transaction.commit();
+			return true;
+		} catch (Exception e) {
+			transaction.rollback();
+			System.err.println("User removing error! " + new Date());
+			e.printStackTrace();
+			return false;
+		}
+		
 	}
 }
