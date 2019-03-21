@@ -12,7 +12,7 @@ public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+	private int user_id;
 	private String email;
 	private String login;
 	private String name;
@@ -36,11 +36,11 @@ public class User implements Serializable {
 
 
 	public int getId() {
-		return this.id;
+		return this.user_id;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.user_id = id;
 	}
 
 	public String getEmail() {

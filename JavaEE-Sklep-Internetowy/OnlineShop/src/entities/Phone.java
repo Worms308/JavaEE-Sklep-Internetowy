@@ -12,14 +12,12 @@ import java.util.List;
  */
 @Entity
 @Table(name="phone")
-@NamedQuery(name="Phone.findAll", query="SELECT p FROM Phone p")
 public class Phone implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="phone_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int phoneId;
+	private int phone_id;
 	private String camera;
 	private String manufacturer;
 	private String model;
@@ -27,10 +25,8 @@ public class Phone implements Serializable {
 	private String processor;
 	private String ram;
 	private BigDecimal rating;
-	@Column(name="rating_count")
-	private int ratingCount;
-	@Column(name="screen_size")
-	private String screenSize;
+	private int rating_count;
+	private String screen_size;
 	private String storage;
 	private String system;
 
@@ -41,11 +37,11 @@ public class Phone implements Serializable {
 
 
 	public int getPhoneId() {
-		return this.phoneId;
+		return this.phone_id;
 	}
 
 	public void setPhoneId(int phoneId) {
-		this.phoneId = phoneId;
+		this.phone_id = phoneId;
 	}
 
 	public String getCamera() {
@@ -105,19 +101,19 @@ public class Phone implements Serializable {
 	}
 
 	public int getRatingCount() {
-		return this.ratingCount;
+		return this.rating_count;
 	}
 
 	public void setRatingCount(int ratingCount) {
-		this.ratingCount = ratingCount;
+		this.rating_count = ratingCount;
 	}
 
 	public String getScreenSize() {
-		return this.screenSize;
+		return this.screen_size;
 	}
 
 	public void setScreenSize(String screenSize) {
-		this.screenSize = screenSize;
+		this.screen_size = screenSize;
 	}
 
 	public String getStorage() {

@@ -22,7 +22,7 @@ public class DBConfig implements ServletContextListener {
 
     public void contextInitialized(ServletContextEvent sce)  {
     	System.out.println("Uruchomienie aplikacji: " + new Date());
-        factory = Persistence.createEntityManagerFactory("Forum");
+        factory = Persistence.createEntityManagerFactory("OnlineShop");
     }
     
     public static EntityManager createEntityManager() {

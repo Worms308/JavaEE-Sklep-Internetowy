@@ -18,12 +18,12 @@ public class Sale implements Serializable {
 	private Date date_completed;
 	
 	@ManyToOne
-	@JoinColumn(name="user")
-	private int user;
+	@JoinColumn(name="sale_user_id")
+	private User user;
 	
 	@ManyToOne
-	@JoinColumn(name="phone")
-	private int phone;
+	@JoinColumn(name="sale_phone_id")
+	private Phone phone;
 	
 
 
@@ -55,18 +55,18 @@ public class Sale implements Serializable {
 	public void setDate_completed(Date date_completed) {
 		this.date_completed = date_completed;
 	}   
-	public int getSale_user_id() {
+	public User getSale_user_id() {
 		return this.user;
 	}
 
-	public void setSale_user_id(int sale_user_id) {
+	public void setSale_user_id(User sale_user_id) {
 		this.user = sale_user_id;
 	}   
-	public int getSale_phone_id() {
+	public Phone getSale_phone_id() {
 		return this.phone;
 	}
 
-	public void setSale_phone_id(int sale_phone_id) {
+	public void setSale_phone_id(Phone sale_phone_id) {
 		this.phone = sale_phone_id;
 	}
    
