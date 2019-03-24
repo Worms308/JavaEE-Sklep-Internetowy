@@ -58,7 +58,7 @@
 
 <div id="logo">
 
-<h1> Toy Land</h1>
+<h1> Toy Land </h1>
 
 <p>The best surprise for Your Children!</p>
 
