@@ -29,6 +29,7 @@ public class Phone implements Serializable {
 	private String screen_size;
 	private String storage;
 	private String system;
+	private BigDecimal discount;
 
 	//bi-directional many-to-one association to Sale
 	@OneToMany(mappedBy="phone", fetch=FetchType.EAGER)
@@ -138,6 +139,14 @@ public class Phone implements Serializable {
 
 	public void setSales(List<Sale> sales) {
 		this.sales = sales;
+	}
+
+	public BigDecimal getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(BigDecimal discount) {
+		this.discount = discount;
 	}
 
 }
