@@ -20,14 +20,14 @@ public class UserDAO {
 	}
 	
 	public User getUserByID(int id) {
-		User user = (User)manager.createQuery("SELECT u FROM user u WHERE u.user_id = :id")
+		User user = (User)manager.createQuery("SELECT u FROM User u WHERE u.user_id = :id")
 				.setParameter("id", id)
 				.getSingleResult();
 	return user;
 	}
 
 	public User getUserByLogin(String login) {
-		User user = (User)manager.createQuery("SELECT u FROM user u WHERE u.login = :login")
+		User user = (User)manager.createQuery("SELECT u FROM User u WHERE u.login = :login")
 					.setParameter("login", login)
 					.getSingleResult();
 		return user;
@@ -35,7 +35,7 @@ public class UserDAO {
 	
 	public List<User> getAllUser() {
 		@SuppressWarnings("unchecked")
-		List<User> result = manager.createQuery("SELECT u FROM user u").getResultList();
+		List<User> result = manager.createQuery("SELECT u FROM User u").getResultList();
 		return result;
 	}
 	

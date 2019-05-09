@@ -12,18 +12,23 @@ import utilities.DBConfig;
 @WebListener
 public class InitDB implements ServletRequestListener {
 
+	private static UserDAO userDAO;
+	private static SaleDAO saleDAO;
+	private static PhoneDAO phoneDAO;
+	private static UsertypeDAO usertypeDAO;
+	private static AddressDAO addressDAO;
 
-    public void requestDestroyed(ServletRequestEvent sre)  { 
+	public void requestDestroyed(ServletRequestEvent sre)  { 
          // TODO Auto-generated method stub
     }
 
     public void requestInitialized(ServletRequestEvent sre)  { 
     	EntityManager manager = DBConfig.createEntityManager();
-    	UserDAO userDAO = new UserDAO(manager);
-    	SaleDAO saleDAO = new SaleDAO(manager);
-    	PhoneDAO phoneDAO = new PhoneDAO(manager);
-    	UsertypeDAO usertypeDAO = new UsertypeDAO(manager);
-    	AddressDAO addressDAO = new AddressDAO(manager);
+    	userDAO = new UserDAO(manager);
+    	saleDAO = new SaleDAO(manager);
+    	phoneDAO = new PhoneDAO(manager);
+    	usertypeDAO = new UsertypeDAO(manager);
+    	addressDAO = new AddressDAO(manager);
     	
     	ServletRequest request = sre.getServletRequest();
     	request.setAttribute("userDAO", userDAO);
@@ -32,5 +37,28 @@ public class InitDB implements ServletRequestListener {
     	request.setAttribute("UsertypeDAO", usertypeDAO);
     	request.setAttribute("AddressDAO", addressDAO);
     }
-	
+    
+    public static UserDAO getUserDao() {
+		return userDAO;
+	}
+    public static UserDAO getUserDAO() {
+  		return userDAO;
+  	}
+
+  	public static SaleDAO getSaleDAO() {
+  		return saleDAO;
+  	}
+
+  	public static PhoneDAO getPhoneDAO() {
+  		return phoneDAO;
+  	}
+
+  	public static UsertypeDAO getUsertypeDAO() {
+  		return usertypeDAO;
+  	}
+
+  	public static AddressDAO getAddressDAO() {
+  		return addressDAO;
+  	}
+
 }

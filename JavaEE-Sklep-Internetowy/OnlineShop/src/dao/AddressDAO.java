@@ -17,10 +17,22 @@ public class AddressDAO {
 	}
 	
 	public Address getAddressByID(int id) {
-		Address address = (Address) manager.createQuery("SELECT a FROM address a WHERE a.address_id = :id")
+		Address address = (Address) manager.createQuery("SELECT a FROM Address a WHERE a.address_id = :id")
 						  .setParameter("id", id)
 						  .getSingleResult();
 		return address;
+	}
+	
+	public Address getAddressByAddress(String country, String city, String street, String street_number, String home_number, String postal) {
+		Address address = (Address) manager.createQuery("SELECT a FROM Address a WHERE a.country = :country AND a.city = :city AND a.street = :street AND a.street_number = :street_number AND a.home_number = :home_number AND a.postal_code = :postal")
+				  .setParameter("country", country)
+				  .setParameter("city", city)
+				  .setParameter("street", street)
+				  .setParameter("street_number", street_number)
+				  .setParameter("home_number", home_number)
+				  .setParameter("postal", postal)
+				  .getSingleResult();
+return address;
 	}
 	
 	public boolean addAddress(Address address) {

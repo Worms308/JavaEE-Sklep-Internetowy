@@ -16,6 +16,7 @@ public class Usertype implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int usertype_id;
+	private String login;
 	private String description;
 	private static final long serialVersionUID = 1L;
 
@@ -33,6 +34,14 @@ public class Usertype implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
 	}
    
 }

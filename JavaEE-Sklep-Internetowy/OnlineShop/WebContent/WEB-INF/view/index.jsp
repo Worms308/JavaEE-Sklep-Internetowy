@@ -14,7 +14,6 @@
 	<link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow" rel="stylesheet">
 
 	
-
 </head>
 
 <body>
@@ -30,7 +29,7 @@
       <a href="#">Smartfony</a>
       <a href="#">Laptopy</a>
     </div>
-	<li id="menu-item"><a href="login.html">Logowanie</a></li>
+	<li id="menu-item"><a href="login">Logowanie</a></li>
 	<li id="menu-item" style="margin-left: 62%;"><a href="#news"><i class="fas fa-user" id="item-nav"></i></a><li>
 	<li><a href="#news"><i class="fas fa-shopping-basket" id="item-nav"></i></a></li>
 </ul>
