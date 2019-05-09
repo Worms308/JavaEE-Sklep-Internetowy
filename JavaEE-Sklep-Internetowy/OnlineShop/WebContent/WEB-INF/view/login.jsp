@@ -22,7 +22,7 @@
 
 	<div class="nav">
 		<ul>
-  <li id="menu-item"><a href="index.html">Home</a></li>
+  <li id="menu-item"><a href="index">Home</a></li>
   <li id="menu-item"><a href="#news">O nas</a></li>
   <li class="dropdown" id="menu-item">
     <a href="javascript:void(0)" class="dropbtn">Smartfony</a>
@@ -46,7 +46,7 @@
 		<h1>Electra Shop</h1>
 		
 					<input type='checkbox' id='form-switch'>
-<form id='login-form' action="j_security_check" method='post'>
+<form id='login-form' action="j_security_check" method="post">
   <input type="text" name="j_username" placeholder="Nazwa użytkownika" required>
   <input type="password" name="j_password" placeholder="Hasło" required>
   <button type='submit'>Zaloguj się</button>
