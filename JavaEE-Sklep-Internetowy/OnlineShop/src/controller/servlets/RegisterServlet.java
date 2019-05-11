@@ -38,6 +38,9 @@ public class RegisterServlet extends HttpServlet {
 		if (registerBean.registerUser(name, surname, phone, country, city, street, streetNum, home, postal, login, email, password, password2)) {
 			System.out.println("dodano");
 			request.getRequestDispatcher("/WEB-INF/view/index.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
+			request.setAttribute("error", "Błąd logowania (może login jest już zajęty)");
 		}
 	}
 

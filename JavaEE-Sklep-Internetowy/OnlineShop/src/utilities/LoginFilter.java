@@ -32,7 +32,6 @@ public class LoginFilter implements Filter {
 		
 		req.setCharacterEncoding("UTF-8");
 		String login = req.getRemoteUser();
-		System.out.println(login);
 		if (login != null) {
 			User user = (User)req.getSession().getAttribute("user");
 			if (user == null) {

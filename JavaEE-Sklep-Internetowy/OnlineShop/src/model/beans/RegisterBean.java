@@ -32,6 +32,7 @@ public class RegisterBean {
 					user.setPassword(password);
 					Usertype usertype = new Usertype();
 					usertype.setLogin(login);
+					usertype.setDescription("user");
 					if (!usertypeDAO.addUsertype(usertype))
 						return false;
 					Address userAddress;

@@ -20,24 +20,7 @@
 
 <body>
 
-	<div class="nav">
-		<ul>
-  <li id="menu-item"><a href="index">Home</a></li>
-  <li id="menu-item"><a href="#news">O nas</a></li>
-  <li class="dropdown" id="menu-item">
-    <a href="javascript:void(0)" class="dropbtn">Smartfony</a>
-    <div class="dropdown-content">
-      <a href="all_products.html">Wszystkie</a>
-      <a href="iphone-products.html">iPhone</a>
-      <a href="samsung-products.html">Samsung</a>
-	  <a href="huaweii-products.html">Huaweii</a>
-	  <a href="xiaomi-products.html">Xiaomi</a>
-    </div>
-	<li id="menu-item"><a href="login.html">Logowanie</a></li>
-	<li id="menu-item" style="margin-left: 62%;"><a href="#news"><i class="fas fa-user" id="item-nav"></i></a><li>
-	<li><a href="#news"><i class="fas fa-shopping-basket" id="item-nav"></i></a></li>
-</ul>
-	</div>
+	<jsp:include page="components/navbar.jsp" />
 	
 	<div class="content">
 		
@@ -73,7 +56,7 @@
   <br><br>
   <label for='form-switch' class="spanek">Jesteś użytkowniem? Zaloguj się</label>
 </form>
-
+	${param.error}
 		
 	
 	</div>
