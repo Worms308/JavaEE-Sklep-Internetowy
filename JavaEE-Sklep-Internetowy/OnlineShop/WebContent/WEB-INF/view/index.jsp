@@ -11,25 +11,16 @@
 
 	<link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow" rel="stylesheet">
 </head>
-
 <body>
+
 	<jsp:include page="components/navbar.jsp" />
-	
 	<div class="content">
 		<div class="lines">
-		<h1>Electra Shop</h1>
+			<h1>Electra Shop</h1>
+		</div>
 	</div>
-	</div>
 	
-
-<div id="footer">
-	by Electra Shop
-</div>
-	
-	
-
-<script src="script.js"></script>
+	<script src="script.js"></script>
 
 </body>
-
 </html>

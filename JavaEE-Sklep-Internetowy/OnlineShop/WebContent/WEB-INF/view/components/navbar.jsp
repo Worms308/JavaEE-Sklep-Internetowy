@@ -23,6 +23,5 @@
 	<c:if test="${sessionScope.user != null}">
 		<a href="index"><i class="fas fa-sign-out-alt" id="item-nav"></i></a>
 	</c:if>
-
-
-	</div>
+	
+</div>

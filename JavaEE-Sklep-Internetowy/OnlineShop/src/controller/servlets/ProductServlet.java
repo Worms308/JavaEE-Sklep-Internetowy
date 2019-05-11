@@ -11,7 +11,7 @@ import dao.InitDB;
 import entities.Phone;
 
 
-@WebServlet("/products/*")
+@WebServlet("/products/phone")
 public class ProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -19,7 +19,10 @@ public class ProductServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		Phone phone = InitDB.getPhoneDAO().getPhoneByID(id);
-		response.getWriter().println(phone.getManufacturer() + " " + phone.getModel());
+		
+		request.setAttribute("phone", phone);
+		
+		request.getRequestDispatcher("/WEB-INF/view/phone.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
