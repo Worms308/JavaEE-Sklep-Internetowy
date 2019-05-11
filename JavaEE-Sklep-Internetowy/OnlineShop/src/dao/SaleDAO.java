@@ -18,7 +18,7 @@ public class SaleDAO {
 	}
 	
 	public Sale getSaleByID(int id) {
-		Sale sale = (Sale)manager.createQuery("SELECT s FROM sale s WHERE s.sale_id = :id")
+		Sale sale = (Sale)manager.createQuery("SELECT s FROM Sale s WHERE s.sale_id = :id")
 					.setParameter("id", id)
 					.getSingleResult();
 		return sale;
@@ -26,7 +26,7 @@ public class SaleDAO {
 	
 	public List<Sale> getAllSales() {
 		@SuppressWarnings("unchecked")
-		List<Sale> result = manager.createQuery("SELECT s FROM sale s").getResultList();
+		List<Sale> result = manager.createQuery("SELECT s FROM Sale s").getResultList();
 		return result;
 	}
 	

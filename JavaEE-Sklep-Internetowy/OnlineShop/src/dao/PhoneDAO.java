@@ -17,7 +17,7 @@ public class PhoneDAO {
 	}
 	
 	public Phone getPhoneByID(int id) {
-		Phone phone = (Phone)manager.createQuery("SELECT p FROM phone p WHERE p.phone_id = :id")
+		Phone phone = (Phone)manager.createQuery("SELECT p FROM Phone p WHERE p.phone_id = :id")
 					  .setParameter("id", id)
 					  .getSingleResult();
 		return phone;
@@ -25,7 +25,7 @@ public class PhoneDAO {
 	
 	public List<Phone> getAllPhone() {
 		@SuppressWarnings("unchecked")
-		List<Phone> result = manager.createQuery("SELECT p FROM phone p").getResultList();
+		List<Phone> result = manager.createQuery("SELECT p FROM Phone p").getResultList();
 		return result;
 	}
 	

@@ -34,12 +34,14 @@
 
 <h1 class="text-gallery"> Wszystkie produkty</h1>
   <section class="gallery">
-    <jsp:include page="components/phone_tile.jsp">
-    	<jsp:param name="manufacturer" value="Nokia"/>
-    	<jsp:param name="model" value="XD"/>
-    	<jsp:param name="id" value="1"/>
-    	<jsp:param name="img" value="samsung.png"/>
-    </jsp:include>
+  	<c:forEach items="${phones}" var="iterator">
+	    <jsp:include page="components/phone_tile.jsp">
+	    	<jsp:param name="manufacturer" value="${iterator.manufacturer}"/>
+	    	<jsp:param name="model" value="${iterator.model}"/>
+	    	<jsp:param name="id" value="${iterator.phoneId}"/>
+	    	<jsp:param name="img" value="${iterator.img}"/>
+	    </jsp:include>
+    </c:forEach>
     
   </section>
 </main>
