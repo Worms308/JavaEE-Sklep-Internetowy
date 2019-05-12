@@ -58,4 +58,24 @@ public class PhoneDAO {
 			return false;
 		}
 	}
+	
+	public boolean changeQuantity(Phone phone, int toChange) {
+		Phone fromDB = manager.find(Phone.class, phone);
+		
+		if (phone.getQuantity() + toChange < 0)
+			return false;
+		
+		EntityTransaction transaction = manager.getTransaction();
+		try {
+			transaction.begin();
+			fromDB.setQuantity(fromDB.getQuantity() + toChange);
+			transaction.commit();
+			return true;
+		} catch (Exception e) {
+			transaction.rollback();
+			System.err.println("Phone quantity changing error! " + new Date());
+			e.printStackTrace();
+			return false;
+		}
+	}
 }

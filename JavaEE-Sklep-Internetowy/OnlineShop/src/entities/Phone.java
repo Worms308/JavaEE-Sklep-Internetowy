@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -38,6 +39,23 @@ public class Phone implements Serializable {
 	private List<Sale> sales;
 
 
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(phone_id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Phone other = (Phone) obj;
+		return phone_id == other.phone_id;
+	}
 
 	public int getPhoneId() {
 		return this.phone_id;

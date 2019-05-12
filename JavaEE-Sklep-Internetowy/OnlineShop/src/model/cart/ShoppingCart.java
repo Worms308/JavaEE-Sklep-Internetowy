@@ -7,53 +7,51 @@ import java.util.List;
 import entities.Phone;
 
 public class ShoppingCart {
-
-	private List<Phone> phones;
-	private List<Integer> quantity;
+	
+	private List<CartPosition> positions;
 	
 	public ShoppingCart() {
-		phones = new ArrayList<>();
-		quantity = new ArrayList<>();
+		positions = new ArrayList<>();
 	}
-	
-	public void addElement(Phone phone) {
-		if (phones.contains(phone)) {
-			quantity.set(phones.indexOf(phone), quantity.get(phones.indexOf(phone)) + 1);
-		} else {
-			phones.add(phone);
-			quantity.add(1);
+		
+	public void add(Phone phone) {
+		for (CartPosition cartPosition:positions) {
+			if (cartPosition.getPhone().equals(phone)) {
+				cartPosition.setQuantity(cartPosition.getQuantity() + 1);
+				return;
+			}
 		}
+		
+		positions.add(new CartPosition(phone, 1));
 	}
 	
-	public void removeElement(Phone phone) {
-		if (phones.contains(phone)) {
-			quantity.set(phones.indexOf(phone), quantity.get(phones.indexOf(phone)) - 1);
-			if (quantity.get(phones.indexOf(phone)) == 0) {
-				quantity.remove(quantity.get(phones.indexOf(phone)));
-				phones.remove(phone);
+	public void remove(Phone phone) {
+		for (CartPosition cartPosition:positions) {
+			if (cartPosition.getPhone().equals(phone)) {
+				cartPosition.setQuantity(cartPosition.getQuantity() - 1);
+				if (cartPosition.getQuantity() == 0) {
+					positions.remove(cartPosition);
+				}
 			}
 		}
 	}
 	
-	public void clear() {
-		phones.clear();
-		quantity.clear();
-	}
-	
-	public double getTotalPrice() {
-		BigDecimal totalPrice = new BigDecimal(0.0);
-		for (int i=0;i<phones.size();++i)
-			totalPrice.add(phones.get(i).getPrice().multiply(BigDecimal.valueOf(quantity.get(i))));
+	public BigDecimal getTotalPriceWithDiscount() {
+		BigDecimal result = new BigDecimal(0.0);
 		
-		return totalPrice.doubleValue();
-	}
-	
-	public List<Phone> getPhones() {
-		ArrayList<Phone> result = new ArrayList<>();
-		for (int i=0;i<phones.size();++i) {
-			for (int j=0;j<quantity.get(i).intValue();++j)
-				result.add(phones.get(i));
+		for (CartPosition cartPosition:positions) {
+			result = result.add(cartPosition.getTotalPriceWithDiscount());
 		}
+			
 		return result;
 	}
+	
+	public void clear() {
+		positions.clear();
+	}
+	
+	public ArrayList<CartPosition> getPhonesWithQuantity() {
+		return new ArrayList<CartPosition>(positions);
+	}
+
 }

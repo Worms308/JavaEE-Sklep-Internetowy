@@ -4,11 +4,76 @@
 
 <div class="all">
 	<div class="product_space">
-		
 		<div class="info_single">
 			<div class="content_single">
 				<h1 class="text-center">${phone.manufacturer} ${phone.model}</h1>
-				<h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac ex a est pharetra cursus. Praesent eu elementum nisi. Aenean molestie velit a ante ultrices condimentum. Pellentesque ornare sapien et ipsum fermentum, eu maximus justo sagittis. Cras nec nisi tellus. Proin malesuada efficitur efficitur. Quisque non lobortis nulla. Donec sodales mauris et orci malesuada, in congue eros commodo. Sed efficitur eros purus, a accumsan nunc varius consequat. Etiam nec enim posuere, venenatis mauris a, convallis lorem. </h5>
+				
+				<style>
+					table {
+						border: none;
+					}
+					
+					th {
+						text-align: left;
+					}
+					
+					td {
+						padding-left: 18px;
+					}
+					
+					.price {
+						font-weight: 700;
+						margin: 40px 0;
+					}
+					
+					.price__value {
+						font-size: 40px;
+						color: #19247c;
+						margin: 0 0 0 25px;
+						
+					}
+					
+				</style>
+				
+				<table style="border: none;">
+						<tr>
+							<th>Producent</th>
+							<td>${phone.manufacturer}</td>
+						</tr>
+						<tr>
+							<th>Model</th>
+							<td>${phone.model}</td>
+						</tr>
+						<tr>
+							<th>Procesor</th>
+							<td>${phone.processor}</td>
+						</tr>
+						<tr>
+							<th>System</th>
+							<td>${phone.system}</td>
+						</tr>
+						<tr>
+							<th>Ekran</th>
+							<td>${phone.screenSize}"</td>
+						</tr>
+						<tr>
+							<th>Ram</th>
+							<td>${phone.ram} GB</td>
+						</tr>
+						<tr>
+							<th>Pamięć</th>
+							<td>${phone.storage} GB</td>
+						</tr>
+						<tr>
+							<th>Kamera</th>
+							<td>${phone.camera} MPX</td>
+						</tr>
+				 </table>
+				 
+				 <div class="price">
+				 <b>Cena:</b> <span class="price__value">${phone.price }</span>
+				 </div>
+				 
 			</div>
 		</div>
 		
@@ -32,25 +97,23 @@
 		<c:if test="${phone.quantity > 0}">
 			<div class="info_single">
 				<div class="content_single">
-					<button>Dodaj do koszyka</button>
+				<form action="<c:url value="/cart"/>" method="post">
+					<button type="submit" name="id" value="${phone.phoneId}">Dodaj do koszyka</button>
+				</form>
 				</div>
 			</div>
 		</c:if>
 		
-		<!-- Jeżeli produkt nie jest na stanie to nie będzie możliwości dodania
-		     i możemy zrobić, że przycisk np. będzie szary. Ale to według Twojego uznania.-->
-		
-		
 	</div>
 	<div class="image_single">
-		<img src="../<c:url value="front-end-resources/img/${phone.img}"/>"/>
+		<img src="<c:url value="/front-end-resources/img/${phone.img}"/>"/>
 	</div>
 </div>
 
 	
 <div class="buttons_op">
 	<div class="buttons">
-		<a href="../products"><button>Kontynuuj zakupy</button></a>
-		<a href="#"><button>Przejdź do koszyka</button></a>
+		<a href="<c:url value="/products"/>"><button>Kontynuuj zakupy</button></a>
+		<a href="<c:url value="/cart"/>"><button>Przejdź do koszyka</button></a>
 	</div>
 </div>

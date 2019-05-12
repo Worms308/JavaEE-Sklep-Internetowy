@@ -3,9 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <figure class="gallery__item">
-      <img src="<c:url value="front-end-resources/img/${param.img}"/>" class="gallery__image">
+      <img src="<c:url value="/front-end-resources/img/${param.img}"/>" class="gallery__image">
       <figcaption class="gallery__image-caption">
         ${param.manufacturer} ${param.model}<br>
-		<a href="products/phone?id=${param.id}"><i class="fas fa-cart-plus"></i></a>
+		<a href="<c:url value="/products/phone?id=${param.id}"/>"><i class="fas fa-cart-plus"></i></a>
       </figcaption>
 </figure> 
