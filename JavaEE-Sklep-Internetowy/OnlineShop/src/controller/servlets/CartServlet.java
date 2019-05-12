@@ -17,8 +17,10 @@ public class CartServlet extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ShoppingCart cart = (ShoppingCart) request.getSession().getAttribute("cart");
-		response.getWriter().println(cart.getTotalPriceWithDiscount().doubleValue());
-		response.getWriter().println(cart.getPhonesWithQuantity().size());
+		request.setAttribute("cart", cart);
+		
+		request.getRequestDispatcher("/WEB-INF/view/cart.jsp").forward(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

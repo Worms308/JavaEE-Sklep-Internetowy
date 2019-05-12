@@ -36,9 +36,7 @@
   <security-constraint>
     <web-resource-collection>
       <web-resource-name>rule2</web-resource-name>
-      <url-pattern>/login</url-pattern>
-      <url-pattern>/products</url-pattern>
-      <url-pattern>/products/*</url-pattern>
+      <url-pattern>/order</url-pattern>
       <http-method>GET</http-method>
       <http-method>POST</http-method>
     </web-resource-collection>

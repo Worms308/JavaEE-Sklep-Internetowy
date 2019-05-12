@@ -47,12 +47,6 @@
 </main>
 	
 
-
-<div id="footer">
-	by Electra Shop
-</div>
-	
-
 </body>
 
 </html>

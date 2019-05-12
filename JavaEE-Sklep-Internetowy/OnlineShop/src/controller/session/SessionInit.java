@@ -15,7 +15,7 @@ public class SessionInit implements HttpSessionListener {
 	 */
 	public void sessionCreated(HttpSessionEvent se)  { 
         se.getSession().setAttribute("cart", new ShoppingCart());
-        //se.getSession().setMaxInactiveInterval(3600 * 24 * 14); 
+        se.getSession().setMaxInactiveInterval(3600 * 24 * 14); 
    }
 
    public void sessionDestroyed(HttpSessionEvent se)  { 
