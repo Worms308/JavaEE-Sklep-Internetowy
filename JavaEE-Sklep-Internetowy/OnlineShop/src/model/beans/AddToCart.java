@@ -8,7 +8,9 @@ public class AddToCart {
 
 	public boolean addToCart(ShoppingCart cart, int phoneId) {
 		Phone phone = InitDB.getPhoneDAO().getPhoneByID(phoneId);
-		if (phone != null && phone.getQuantity() > 0) {
+//		System.out.println("W koszyku: " + cart.getPhoneQuantity(phone));
+//		System.out.println("W magazyn: " + phone.getQuantity());
+		if (phone != null && phone.getQuantity() > 0 && cart.getPhoneQuantity(phone) < phone.getQuantity()) {
 			cart.add(phone);
 			return true;
 		} else {

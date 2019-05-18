@@ -3,6 +3,7 @@ package entities;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Objects;
 
@@ -114,7 +115,7 @@ public class Phone implements Serializable {
 	}
 
 	public BigDecimal getRating() {
-		return this.rating;
+		return this.rating.divide(new BigDecimal(this.getRatingCount()),  2, RoundingMode.HALF_UP);
 	}
 
 	public void setRating(BigDecimal rating) {

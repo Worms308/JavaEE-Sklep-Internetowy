@@ -28,11 +28,17 @@
 	</div>
 	</div>
 	
+	<jsp:include page="components/products_filters.jsp">
+		<jsp:param name="manufacturers" value="${manufacturers}"/>
+		<jsp:param name="models" value="${models}"/>
+		<jsp:param name="system" value="${system}"/>
+		<jsp:param name="processor" value="${processor}"/>
+	</jsp:include>
 
 	
 <main class="site-wrapper">
 
-<h1 class="text-gallery"> Wszystkie produkty</h1>
+<h1 class="text-gallery"> Produkty</h1>
   <section class="gallery">
   	<c:forEach items="${phones}" var="iterator">
 	    <jsp:include page="components/phone_tile.jsp">

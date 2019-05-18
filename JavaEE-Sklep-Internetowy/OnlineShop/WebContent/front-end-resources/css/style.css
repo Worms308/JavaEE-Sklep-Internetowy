@@ -258,6 +258,10 @@ form {
   text-align:center;
 }
 
+.form-filter{
+	width: 100%;
+}
+
 
 input {
   margin-bottom:3px;

@@ -53,5 +53,13 @@ public class ShoppingCart {
 	public ArrayList<CartPosition> getPhonesWithQuantity() {
 		return new ArrayList<CartPosition>(positions);
 	}
+	
+	public int getPhoneQuantity(Phone phone) {
+		int result = 0;
+		for (CartPosition position:positions)
+			if (position.getPhone().equals(phone))
+				result++;
+		return result;
+	}
 
 }
