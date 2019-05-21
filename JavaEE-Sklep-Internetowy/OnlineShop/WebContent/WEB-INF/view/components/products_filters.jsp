@@ -4,7 +4,7 @@
 
 <main class="site-wrapper">
 	<h1 class="text-center first_h1">Kategorie produktów</h1>
-	 <form action="<c:url value="/products"/>" method="post" class="form-filter"> 
+	 <form action="<c:url value="/products"/>" method="post" class="form-filter" style="width: 100%"> 
 	
     <div class="filters">
     	<select id="manufacturer" name="manufacturer">

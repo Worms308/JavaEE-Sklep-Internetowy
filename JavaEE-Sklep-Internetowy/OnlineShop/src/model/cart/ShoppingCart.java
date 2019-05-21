@@ -31,6 +31,7 @@ public class ShoppingCart {
 				cartPosition.setQuantity(cartPosition.getQuantity() - 1);
 				if (cartPosition.getQuantity() == 0) {
 					positions.remove(cartPosition);
+					break;
 				}
 			}
 		}

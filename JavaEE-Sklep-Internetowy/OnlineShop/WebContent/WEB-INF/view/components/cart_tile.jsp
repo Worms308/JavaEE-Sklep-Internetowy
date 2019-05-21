@@ -4,8 +4,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <tr>
-	<td>${param.id}</td>
+	<td>${param.name}</td>
 	<td><img src="<c:url value="/front-end-resources/img/${param.img}"/>"></td>
 	<td>${param.quantity}</td>
-	<td><fmt:parseNumber type="number" pattern="#.##" value="${param.totalPrice}"/>zł</td>				
+	<td><fmt:parseNumber type="number" pattern="#.##" value="${param.totalPrice}"/>zł</td>
+	<td><a href="<c:url value="/cart/remove?id=${param.id}"/>"><i class="fa fa-trash" aria-hidden="true"></i><br>Usuń			</a>
 </tr>

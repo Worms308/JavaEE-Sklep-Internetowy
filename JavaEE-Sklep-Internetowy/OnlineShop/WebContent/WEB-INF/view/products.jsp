@@ -22,7 +22,7 @@
 
 	<jsp:include page="components/navbar.jsp" />
 	
-	<div class="content">
+	<div class="content-min">
 		<div class="lines">
 		<h1>Electra Shop</h1>
 	</div>

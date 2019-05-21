@@ -15,7 +15,7 @@
 <body>
 
 	<jsp:include page="components/navbar.jsp" />
-	<div class="content">
+	<div class="content-min">
 		<div class="lines">
 			<h1>Electra Shop</h1>
 		</div>
@@ -34,7 +34,8 @@
 				</tr>
 				<c:forEach items="${cart.phonesWithQuantity}" var="iterator" varStatus="index">
 					<jsp:include page="components/cart_tile.jsp">
-				    	<jsp:param name="id" value="${iterator.phone.manufacturer} ${iterator.phone.model}"/>
+				    	<jsp:param name="id" value="${iterator.phone.phoneId}"/>
+				    	<jsp:param name="name" value="${iterator.phone.manufacturer} ${iterator.phone.model}"/>
 				    	<jsp:param name="img" value="${iterator.phone.img}"/>
 				    	<jsp:param name="quantity" value="${iterator.quantity}"/>
 				    	<jsp:param name="totalPrice" value="${iterator.totalPriceWithDiscount}"/>

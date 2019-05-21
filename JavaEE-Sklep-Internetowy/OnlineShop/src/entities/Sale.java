@@ -13,6 +13,8 @@ public class Sale implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO) 
 	private int sale_id;
+	private String delivery;
+	private String payment;
 	private int quantity;
 	private Date date_order;
 	private Date date_completed;
@@ -68,6 +70,22 @@ public class Sale implements Serializable {
 
 	public void setSale_phone_id(Phone sale_phone_id) {
 		this.phone = sale_phone_id;
+	}
+
+	public String getDelivery() {
+		return delivery;
+	}
+
+	public void setDelivery(String delivery) {
+		this.delivery = delivery;
+	}
+
+	public String getPayment() {
+		return payment;
+	}
+
+	public void setPayment(String payment) {
+		this.payment = payment;
 	}
    
 }

@@ -33,8 +33,7 @@
       <form-error-page>/login</form-error-page>
     </form-login-config>
   </login-config>
-  
-   <security-constraint>
+  <security-constraint>
     <web-resource-collection>
       <web-resource-name>rule</web-resource-name>
       <url-pattern>/login</url-pattern>
@@ -49,7 +48,6 @@
       <transport-guarantee>NONE</transport-guarantee>
     </user-data-constraint>
   </security-constraint>
-  
   <security-constraint>
     <web-resource-collection>
       <web-resource-name>rule2</web-resource-name>
