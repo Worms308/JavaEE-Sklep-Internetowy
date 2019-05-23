@@ -35,8 +35,10 @@
   </login-config>
   <security-constraint>
     <web-resource-collection>
-      <web-resource-name>rule</web-resource-name>
+      <web-resource-name>common</web-resource-name>
       <url-pattern>/login</url-pattern>
+      <url-pattern>/order</url-pattern>
+      <url-pattern>/realize</url-pattern>
       <http-method>GET</http-method>
       <http-method>POST</http-method>
     </web-resource-collection>
@@ -50,14 +52,14 @@
   </security-constraint>
   <security-constraint>
     <web-resource-collection>
-      <web-resource-name>rule2</web-resource-name>
-      <url-pattern>/order</url-pattern>
+      <web-resource-name>administrator</web-resource-name>
+      <url-pattern>/admin</url-pattern>
+      <url-pattern>/admin/*</url-pattern>
       <http-method>GET</http-method>
       <http-method>POST</http-method>
     </web-resource-collection>
     <auth-constraint>
       <role-name>admin</role-name>
-      <role-name>user</role-name>
     </auth-constraint>
     <user-data-constraint>
       <transport-guarantee>NONE</transport-guarantee>

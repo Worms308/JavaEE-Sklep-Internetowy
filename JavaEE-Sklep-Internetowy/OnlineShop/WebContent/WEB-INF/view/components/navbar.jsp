@@ -14,6 +14,9 @@
 			<a href="#">Witaj, ${user.name}</a>
 		</c:otherwise>
 	</c:choose>
+	<c:if test="${sessionScope.user.usertype.description == 'admin'}">
+		<a href="<c:url value="/admin"/>"><b>Panel administratora</b></a>
+	</c:if>
 	
 	<div class="icons_space">
 		<a href="<c:url value="login"/>" class="user_margin"><i class="fas fa-user" id="item-nav"></i></a>

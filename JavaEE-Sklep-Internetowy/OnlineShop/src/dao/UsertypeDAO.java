@@ -22,6 +22,26 @@ public class UsertypeDAO {
 		return usertype;
 	}
 	
+	public boolean changeDescription(Usertype usertype, String description) {
+		Usertype fromDB = manager.find(Usertype.class, usertype.getUsertype_id());
+		
+		if (!description.equals("user") && !description.equals("admin"))
+			return false;
+
+		EntityTransaction transaction = manager.getTransaction();
+		try {
+			transaction.begin();
+			fromDB.setDescription(description);;
+			transaction.commit();
+			return true;
+		} catch (Exception e) {
+			transaction.rollback();
+			System.err.println("Phone quantity changing error! " + new Date());
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	public boolean addUsertype(Usertype usertype) {
 		EntityTransaction transaction = manager.getTransaction();
 		try {

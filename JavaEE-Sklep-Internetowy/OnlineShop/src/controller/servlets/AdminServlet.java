@@ -7,18 +7,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class LogoutServlet
- */
-@WebServlet("/logout")
-public class LogoutServlet extends HttpServlet {
+
+@WebServlet("/admin")
+public class AdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.logout();
-		request.getSession().setAttribute("user", null);
-		//request.getRequestDispatcher("/login").forward(request, response);
-		response.sendRedirect(request.getContextPath() + "/login");
+		request.getRequestDispatcher("/WEB-INF/view/admin.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

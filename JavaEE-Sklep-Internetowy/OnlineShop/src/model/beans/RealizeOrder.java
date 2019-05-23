@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import dao.InitDB;
+import dao.PhoneDAO;
 import dao.SaleDAO;
 import entities.Sale;
 import entities.User;
@@ -15,6 +16,7 @@ public class RealizeOrder {
 	public boolean realize(User user, ShoppingCart cart, String delivery, String payment) {
 		List<CartPosition> positions = cart.getPhonesWithQuantity();
 		SaleDAO saleDAO = InitDB.getSaleDAO();
+		PhoneDAO phoneDAO = InitDB.getPhoneDAO();
 		
 		for (CartPosition position:positions) {
 			Sale sale = new Sale();
@@ -27,6 +29,7 @@ public class RealizeOrder {
 			
 			if (saleDAO.addSale(sale) == false)
 				return false;
+			phoneDAO.changeQuantity(position.getPhone(), -position.getQuantity());
 		}
 		cart.clear();
 		return true;

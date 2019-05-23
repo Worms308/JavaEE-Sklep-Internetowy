@@ -60,7 +60,7 @@ public class PhoneDAO {
 	}
 	
 	public boolean changeQuantity(Phone phone, int toChange) {
-		Phone fromDB = manager.find(Phone.class, phone);
+		Phone fromDB = manager.find(Phone.class, phone.getPhoneId());
 		
 		if (phone.getQuantity() + toChange < 0)
 			return false;

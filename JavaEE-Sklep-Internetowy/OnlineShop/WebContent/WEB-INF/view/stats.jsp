@@ -1,7 +1,6 @@
-﻿<%@ page language="java" contentType="text/html; utf-8"
+<%@ page language="java" contentType="text/html; utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,13 +14,14 @@
 <body>
 
 	<jsp:include page="components/navbar.jsp" />
-	<div class="content"> 
+	<div class="content-min">
 		<div class="lines">
 			<h1>Electra Shop</h1>
-			<jsp:include page="components/loginRegister.jsp" />
-			${param.error}
 		</div>
 	</div>
 	
+	<jsp:include page="components/stats/pie_chart.jsp"/>
+	
+
 </body>
 </html>

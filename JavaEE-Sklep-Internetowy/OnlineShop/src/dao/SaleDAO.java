@@ -26,7 +26,7 @@ public class SaleDAO {
 	
 	public List<Sale> getAllSales() {
 		@SuppressWarnings("unchecked")
-		List<Sale> result = manager.createQuery("SELECT s FROM Sale s").getResultList();
+		List<Sale> result = manager.createQuery("SELECT s FROM Sale s ORDER BY s.date_order ASC").getResultList();
 		return result;
 	}
 	
