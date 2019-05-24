@@ -20,7 +20,11 @@
 		</div>
 	</div>
 	
-	<jsp:include page="components/stats/pie_chart.jsp"/>
+	<div style="display: flex; justify-content: center;">
+		<jsp:include page="components/stats/pie_chart.jsp"/>
+		<jsp:include page="components/stats/pie_chart_storage.jsp"/>
+	</div>
+	<jsp:include page="components/stats/combochart.jsp"/>
 	
 
 </body>

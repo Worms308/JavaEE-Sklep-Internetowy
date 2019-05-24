@@ -1,6 +1,7 @@
 package model.beans;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -16,8 +17,18 @@ public class SoldStats {
 		this.sales = sales; 
 	}
 	
+	public List<Phone> getPhones(List<Phone> phones){
+		List<Phone> nowe = new ArrayList<>();
+		for (Phone it:phones) {
+			nowe.add(new Phone());
+			nowe.get(nowe.size()-1).setQuantity(it.getQuantity());
+			nowe.get(nowe.size()-1).setManufacturer(it.getManufacturer());
+			nowe.get(nowe.size()-1).setModel(it.getModel());
+		}
+		return nowe;
+	}
+	
 	public List<Phone> soldLastMonth() {
-		//PhoneDAO phoneDAO = InitDB.getPhoneDAO();
 		List<Phone> result = new ArrayList<>();
 		Date dt = new Date();
 		Calendar c = Calendar.getInstance(); 
@@ -44,5 +55,104 @@ public class SoldStats {
 		}
 		
 		return result;
+	}
+
+	private Date getStartDate() {
+		Date firstDate = sales.get(0).getDate_order();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(firstDate);
+		calendar.set( Calendar.DAY_OF_MONTH, 1); 
+		calendar.set( Calendar.HOUR, 0); 
+		calendar.set( Calendar.MINUTE, 0); 
+		calendar.set( Calendar.SECOND, 0);
+		calendar.set( Calendar.MILLISECOND, 0);
+		return calendar.getTime();
+	}
+	
+	
+	private Date addMonth(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.add( Calendar.MONTH, 1); 
+		return calendar.getTime();
+	}
+	
+	private String getDateString(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		return "\'" + calendar.get(Calendar.YEAR) + "/" + (calendar.get(Calendar.MONTH)+1) + "\'";
+	}
+	
+	private List<Phone> soldLastMonth(Date start) {
+		List<Phone> result = new ArrayList<>();
+		Date end = start;
+		Calendar c = Calendar.getInstance(); 
+		c.setTime(end);
+		c.add(Calendar.MONTH, 1);
+		end = c.getTime();
+
+		for (int i=0;i<sales.size();++i) {
+			if (sales.get(i).getDate_order().after(end)) continue;
+			if (sales.get(i).getDate_order().before(start)) continue;
+			
+			Phone phone = sales.get(i).getSale_phone_id();
+			boolean added = false;
+			for (Phone it:result) {
+				if (it.getPhoneId() == phone.getPhoneId()) {
+					it.setQuantity(it.getQuantity()+1);
+					added = true;
+					break;
+				}
+			}
+			if (!added) {
+				phone.setQuantity(1);
+				result.add(phone);
+			}
+		}
+		return result;
+	}
+	
+	private int calcPhonesNumber(List<Phone> fromLastMonth, List<Phone> allPhones, int phoneId) {
+		int result = 0;
+		String fullName2 = allPhones.get(phoneId).getManufacturer() + " " + allPhones.get(phoneId).getModel();
+		for (Phone it:fromLastMonth) {
+			String fullName1 = it.getManufacturer() + " " + it.getModel();
+			if (fullName1.equals(fullName2))
+				result = it.getQuantity();
+		}
+		return result;
+	}
+	
+	public String soldComboChartData(List<Phone> phones) {
+		StringBuilder result = new StringBuilder();
+		
+		// DODANIE PIERWSZEGO WIERSZA Z MODELAMI
+		String modelsRow[] = new String[phones.size() + 1];
+		modelsRow[0] = "\'Miesiąc\'";
+		for (int i=0;i<phones.size();++i) {
+			modelsRow[i+1] = "\'" + phones.get(i).getManufacturer() + " " + phones.get(i).getModel() + "\'";
+		}
+		result.append(Arrays.toString(modelsRow));
+		result.append(",");
+		
+		Date start = this.getStartDate();
+		
+		while(start.before(new Date())) {
+			String row[] = new String[modelsRow.length];
+			row[0] = this.getDateString(start);
+			
+			List<Phone> phonesInternal = this.soldLastMonth(start);
+//			for (Phone it:phonesInternal)
+//				System.out.println(it.getQuantity());
+			for (int i=0;i<phones.size();++i) {
+				row[i+1] = String.valueOf(this.calcPhonesNumber(phonesInternal, phones, i));
+			}
+			
+			result.append(Arrays.toString(row)+",");
+			start = this.addMonth(start);
+		}
+		
+		result.deleteCharAt(result.length()-1);
+		return result.toString();
 	}
 }
