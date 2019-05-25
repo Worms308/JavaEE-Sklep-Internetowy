@@ -19,7 +19,7 @@
 	</c:if>
 	
 	<div class="icons_space">
-		<a href="<c:url value="login"/>" class="user_margin"><i class="fas fa-user" id="item-nav"></i></a>
+		<a href="<c:url value="/login"/>" class="user_margin"><i class="fas fa-user" id="item-nav"></i></a>
 		<a href="<c:url value="/cart"/>"><i class="fas fa-shopping-basket" id="item-nav"></i></a>
 	</div>
 	

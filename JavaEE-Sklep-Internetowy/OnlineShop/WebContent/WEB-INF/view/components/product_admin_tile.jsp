@@ -8,7 +8,16 @@
 	<td>${param.manufacturer} ${param.model}</td>
 	<td><img src="<c:url value="/front-end-resources/img/${param.img}"/>" class="gallery__image" style="height: 120px; width:120px; margin: 0 auto;"></td>
 	<td>${param.price}</td>
-	<td>${param.quantity}</td>
+	
+	<c:choose>
+		<c:when test="${param.quantity > 0}">
+			<td>${param.quantity}</td>
+		</c:when>    
+		<c:otherwise>
+			<td><b style="color:red;">BRAK</b></td>
+		</c:otherwise>
+	</c:choose>
+
 	<td>${param.rating}</td>
 	<td>Edytuj</td>
 </tr>
