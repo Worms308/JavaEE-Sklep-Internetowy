@@ -2,7 +2,7 @@
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<div id="chart_div" style="width: 900px; height: 500px; margin: 0 auto;"></div>
+<div id="chart_div" style="width: 1500px; height: 500px; margin: 0 auto;"></div>
 
 
     <script type="text/javascript">
@@ -20,7 +20,6 @@
           vAxis: {title: 'Sztuki'},
           hAxis: {title: 'Miesiące'},
           seriesType: 'bars',
-          series: {5: {type: 'line'}}
         };
 
         var chart3 = new google.visualization.ComboChart(document.getElementById('chart_div'));
