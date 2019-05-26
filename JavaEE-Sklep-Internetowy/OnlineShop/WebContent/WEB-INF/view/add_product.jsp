@@ -20,6 +20,7 @@
 			<h1>Electra Shop</h1>
 		</div>
 	</div>
+	<jsp:include page="components/admin_panel.jsp"></jsp:include>
 	<div class="shopping-area">
 		<h1>Dodaj produkt</h1>
 		

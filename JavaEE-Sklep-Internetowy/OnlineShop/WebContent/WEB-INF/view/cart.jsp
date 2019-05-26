@@ -24,6 +24,7 @@
 	<div class="shopping-area">
 		<h1>Twój koszyk</h1>
 	
+		<c:if test="${not empty sessionScope.cart.phonesWithQuantity}">
 		<div class="table-card">
 			<table border="1">
 				<tr>
@@ -56,13 +57,22 @@
 			</table>
 			
 		</div>
+		</c:if>
+		
+		<c:if test="${empty sessionScope.cart.phonesWithQuantity}">
+			<div style="width: 100%; display: flex;">
+				<h3 style="margin: 0 auto;"><u>Twój koszyk jest pusty.</u></h3>
+			</div>
+		</c:if>
 	
 	</div>
 	
 	<div class="buttons_op">
 		<div class="buttons">
 			<a href="<c:url value="/products"/>"><button>Kontynuuj zakupy</button></a>
-			<a href="<c:url value="/order"/>"><button>Do kasy</button></a>
+			<c:if test="${not empty sessionScope.cart.phonesWithQuantity}">
+				<a href="<c:url value="/order"/>"><button>Do kasy</button></a>
+			</c:if>
 		</div>
 	</div>
 	

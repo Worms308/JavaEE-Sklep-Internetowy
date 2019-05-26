@@ -19,13 +19,18 @@
 			<h1>Electra Shop</h1>
 		</div>
 	</div>
-	
+	<jsp:include page="components/admin_panel.jsp"></jsp:include>
 	<div style="display: flex; justify-content: center;">
 		<jsp:include page="components/stats/pie_chart.jsp"/>
 		<jsp:include page="components/stats/pie_chart_storage.jsp"/>
 	</div>
 	<jsp:include page="components/stats/combochart.jsp"/>
 	
+	<div class="buttons_op">
+		<div class="buttons">
+			<a href="<c:url value="/admin"/>"><button>Powrót</button></a>
+		</div>
+	</div>
 
 </body>
 </html>

@@ -5,7 +5,7 @@
 
 <tr>
 	<td>${param.id}</td>
-	<td>${param.manufacturer} ${param.model}</td>
+	<td><a href="<c:url value="/products/phone?id=${param.id}"/>">${param.manufacturer} ${param.model}</a></td>
 	<td><img src="<c:url value="/front-end-resources/img/${param.img}"/>" class="gallery__image" style="height: 120px; width:120px; margin: 0 auto;"></td>
 	<td>${param.price}</td>
 	

@@ -22,6 +22,7 @@
 	
 	<script src="script.js"></script>
 	
+	<jsp:include page="components/admin_panel.jsp"></jsp:include>
 	<jsp:include page="components/users_list.jsp"/>
 
 </body>

@@ -59,7 +59,7 @@ public class ShoppingCart {
 		int result = 0;
 		for (CartPosition position:positions)
 			if (position.getPhone().equals(phone))
-				result++;
+				result += position.getQuantity();
 		return result;
 	}
 

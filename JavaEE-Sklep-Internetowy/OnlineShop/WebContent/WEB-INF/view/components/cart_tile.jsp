@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <tr>
-	<td>${param.name}</td>
+	<td><a href="<c:url value="/products/phone?id=${param.id}"/>">${param.name}</a></td>
 	<td><img src="<c:url value="/front-end-resources/img/${param.img}"/>"></td>
 	<td>${param.quantity}</td>
 	<td><fmt:parseNumber type="number" pattern="#.##" value="${param.totalPrice}"/>zł</td>
