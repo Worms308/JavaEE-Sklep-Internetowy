@@ -16,6 +16,7 @@ public class RegisterServlet extends HttpServlet {
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("status", "");
 		request.getRequestDispatcher("/WEB-INF/view/index.jsp").forward(request, response);
 	}
 
@@ -35,12 +36,14 @@ public class RegisterServlet extends HttpServlet {
 		String password2 = (String) request.getParameter("password2");
 		
 		RegisterBean registerBean = new RegisterBean();
-		if (registerBean.registerUser(name, surname, phone, country, city, street, streetNum, home, postal, login, email, password, password2)) {
-			System.out.println("dodano");
-			request.getRequestDispatcher("/WEB-INF/view/index.jsp").forward(request, response);
+		String status = registerBean.registerUser(name, surname, phone, country, city, street, streetNum, home, postal, login, email, password, password2);
+		request.setAttribute("status", status);
+		if (status.equals("Utworzono konto.")) {
+			request.login(login, password);
+			response.sendRedirect(request.getContextPath() + "/index");
+			//request.getRequestDispatcher("/WEB-INF/view/index.jsp").forward(request, response);
 		} else {
 			request.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
-			request.setAttribute("error", "Błąd logowania (może login jest już zajęty)");
 		}
 	}
 

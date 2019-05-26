@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<input type='checkbox' id='form-switch'>
+<input type='checkbox' id='form-switch' <c:if test="${not empty status}"> checked="checked" </c:if>>
 	<form id='login-form' action="j_security_check" method="post">
 		  <input type="text" name="j_username" placeholder="Nazwa użytkownika" required autofocus>
 		  <input type="password" name="j_password" placeholder="Hasło" required>
@@ -19,13 +20,14 @@
 		  <input type="text" name="country" placeholder="Kraj zamieszkania" required>
 		  <input type="text" name="city" placeholder="Miejscowość" required>
 		  <input type="text" name="street" placeholder="Ulica" required>
-		  <input type="text" name="streetNum" placeholder="Nr ulicy" required>
-		  <input type="text" name="home" placeholder="Nr domu/mieszkania" required>
+		  <input type="text" name="streetNum" placeholder="Nr ulicy">
+		  <input type="text" name="home" placeholder="Nr domu/mieszkania">
 		  <input type="text" name="postal" placeholder="Kod pocztowy" required>
 		 
 		  <input type="text" name="username" placeholder="Nazwa użytkownika" required>
 		  <input type="password" name="password" placeholder="Hasło" required>
 		  <input type="password" name="password2" placeholder="Powtórz hasło" required>
+		  <p style="color:red;">${status}</p>
 		  <button type='submit'>Zarejestruj się</button>
 		  <br><br>
 		  <label for='form-switch' class="spanek">Jesteś użytkowniem? Zaloguj się</label>

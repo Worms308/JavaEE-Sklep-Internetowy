@@ -19,7 +19,6 @@
 		<div class="lines">
 			<h1>Electra Shop</h1>
 			<jsp:include page="components/loginRegister.jsp" />
-			${param.error}
 		</div>
 	</div>
 	
