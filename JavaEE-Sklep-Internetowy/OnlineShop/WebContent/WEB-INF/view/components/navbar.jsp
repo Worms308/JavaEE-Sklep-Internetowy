@@ -11,7 +11,7 @@
 			<a href="<c:url value="/login"/>">Logowanie</a>
 		</c:when>    
 		<c:otherwise>
-			<a href="#">Witaj, ${user.name}</a>
+			<a href="<c:url value="/account"/>">Witaj, ${user.name}</a>
 		</c:otherwise>
 	</c:choose>
 	<c:if test="${sessionScope.user.usertype.description == 'admin'}">
@@ -19,7 +19,9 @@
 	</c:if>
 	
 	<div class="icons_space">
-		<a href="<c:url value="/login"/>" class="user_margin"><i class="fas fa-user" id="item-nav"></i></a>
+		<c:if test="${sessionScope.user != null}">
+			<a href="<c:url value="/account"/>" class="user_margin"><i class="fas fa-user" id="item-nav"></i></a>
+		</c:if>
 		<a href="<c:url value="/cart"/>"><i class="fas fa-shopping-basket" id="item-nav"></i></a>
 	</div>
 	

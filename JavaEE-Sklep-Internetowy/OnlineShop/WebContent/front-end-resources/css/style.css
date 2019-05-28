@@ -615,79 +615,88 @@ select {
   margin-top: -5px;
 }
 
-.buyer_area{
-	width: 50%;
-	float: left;
-	display: flex;
-	justify-content: center;
-	margin-bottom: 70px;
+.buyer_area {
+  width: 50%;
+  float: left;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 70px;
 }
 
-.delivery_area{
-	width: 50%;
-	float: left;
-	display: flex;
-	justify-content: center;
+.delivery_area {
+  width: 50%;
+  float: left;
+  display: flex;
+  justify-content: center;
 }
 
-.radio_btn{
-	width: auto !important;
+.radio_btn {
+  width: auto !important;
 }
 
-.payment_info{
-	margin-right: -35px;
+.payment_info {
+  margin-right: -35px;
 }
 
 /*ADMIN*/
 
-.admin-area h1{
-	text-align: center;
-	margin-bottom: 50px;
+.admin-area h1 {
+  text-align: center;
+  margin-bottom: 50px;
 }
 
-.fa-user-shield{
-	font-size: 40px;
-	margin-top: 100px;
-	text-align: center;
+.admin-area {
+  text-align: center;
 }
 
-.admin_icon{
-	display: flex;
-	justify-content: center;
+.fa-user-shield,
+.fa-user-alt,
+.fa-truck {
+  font-size: 40px;
+  margin-top: 100px;
+  text-align: center;
 }
 
-.button-area{
-	display: flex;
-	justify-content: center;
-	margin-bottom: 100px;
+.admin_icon {
+  display: flex;
+  justify-content: center;
 }
 
-.admin-btn{
-	margin-right: 20px;
+.button-area {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
 }
 
-.user-list-table td{
-	width: 150px;
+.admin-btn {
+  margin-right: 20px;
 }
 
-.fa-arrow-down{
-	color: red;
+.user-list-table td {
+  width: 150px;
 }
 
-
-.fa-arrow-up{
-	color: green;
+.fa-arrow-down {
+  color: red;
 }
 
-.input-admin{
-	width: 90%;
+.fa-arrow-up {
+  color: green;
 }
 
-input[type="submit"]{
-	width: 50%;
-	cursor: pointer;
+.input-admin {
+  width: 90%;
 }
 
-.admin-form{
-	margin-bottom: 50px;
+input[type="submit"] {
+  width: 50%;
+  cursor: pointer;
+}
+
+.admin-form {
+  margin-bottom: 50px;
+}
+
+.buyer_offline_info {
+  width: 50%;
 }

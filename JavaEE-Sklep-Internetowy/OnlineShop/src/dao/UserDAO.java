@@ -79,6 +79,75 @@ public class UserDAO {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	public boolean changeUserData(int id, User newData) {
+		User fromDB = manager.find(User.class, id);
 		
+		EntityTransaction transaction = manager.getTransaction();
+		try {
+			transaction.begin();
+			if (newData.getEmail() != null)
+				fromDB.setEmail(newData.getEmail());
+			if (newData.getName() != null)
+				fromDB.setName(newData.getName());
+			if (newData.getSurname() != null)
+				fromDB.setSurname(newData.getSurname());
+			if (newData.getPhone() != null)
+				fromDB.setPhone(newData.getPhone());
+			transaction.commit();
+			return true;
+		} catch (Exception e) {
+			transaction.rollback();
+			System.err.println("Phone quantity changing error! " + new Date());
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean changeUserAddress(int id, Address newAddress) {
+		User fromDB = manager.find(User.class, id);
+		Address address = manager.find(Address.class, fromDB.getAddress().getAddressId());
+		
+		EntityTransaction transaction = manager.getTransaction();
+		try {
+			transaction.begin();
+			//if (newAddress.getCity().isEmpty())
+				address.setCity(newAddress.getCity());
+			//if (newAddress.getCountry().isEmpty())
+				address.setCountry(newAddress.getCountry());
+			//if (newAddress.getHomeNumber().isEmpty())
+				address.setHomeNumber(newAddress.getHomeNumber());
+			//if (newAddress.getPostalCode().isEmpty())
+				address.setPostalCode(newAddress.getPostalCode());
+			//if (newAddress.getStreet().isEmpty())
+				address.setStreet(newAddress.getStreet());
+			//if (newAddress.getStreetNumber().isEmpty())
+				address.setStreetNumber(newAddress.getStreetNumber());
+			transaction.commit();
+			return true;
+		} catch (Exception e) {
+			transaction.rollback();
+			System.err.println("Phone quantity changing error! " + new Date());
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean changeUserPassword(int id, User newData) {
+		User fromDB = manager.find(User.class, id);
+		
+		EntityTransaction transaction = manager.getTransaction();
+		try {
+			transaction.begin();
+			fromDB.setPassword(newData.getPassword());
+			transaction.commit();
+			return true;
+		} catch (Exception e) {
+			transaction.rollback();
+			System.err.println("Phone quantity changing error! " + new Date());
+			e.printStackTrace();
+			return false;
+		}
 	}
 }

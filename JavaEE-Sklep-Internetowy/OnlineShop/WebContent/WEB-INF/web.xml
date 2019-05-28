@@ -37,6 +37,8 @@
     <web-resource-collection>
       <web-resource-name>common</web-resource-name>
       <url-pattern>/login</url-pattern>
+      <url-pattern>/account</url-pattern>
+      <url-pattern>/account/*</url-pattern>
       <url-pattern>/order</url-pattern>
       <url-pattern>/realize</url-pattern>
       <http-method>GET</http-method>
