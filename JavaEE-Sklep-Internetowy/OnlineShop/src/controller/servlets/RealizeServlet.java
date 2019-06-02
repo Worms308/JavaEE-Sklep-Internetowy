@@ -32,7 +32,7 @@ public class RealizeServlet extends HttpServlet {
 		RealizeOrder realizeOrder = new RealizeOrder();
 		realizeOrder.realize(user, cart, delivery, payment);
 		
-		request.getRequestDispatcher("/WEB-INF/view/index.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/confirmation.jsp").forward(request, response);
 	}
 
 }
