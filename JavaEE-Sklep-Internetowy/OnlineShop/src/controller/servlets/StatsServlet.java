@@ -23,9 +23,12 @@ public class StatsServlet extends HttpServlet {
 		SoldStats soldStats = new SoldStats(InitDB.getSaleDAO().getAllSales());
 		final List<Phone> phones = InitDB.getPhoneDAO().getAllPhone();
 		
+//		System.out.println(soldStats.findPhoneTrend(phones.get(0)));
+//		System.out.println(phones.get(0).getModel());
 
 		request.setAttribute("storage", soldStats.getPhones(phones));
 		request.setAttribute("sold", soldStats.soldLastMonth());	
+		request.setAttribute("estimated", soldStats.getEstimatedOrder());	
 		request.setAttribute("comboChart", soldStats.soldComboChartData(phones));
 
 		request.getRequestDispatcher("/WEB-INF/view/stats.jsp").forward(request, response);

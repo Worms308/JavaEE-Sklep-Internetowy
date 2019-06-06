@@ -23,6 +23,7 @@
 	<div style="display: flex; justify-content: center;">
 		<jsp:include page="components/stats/pie_chart.jsp"/>
 		<jsp:include page="components/stats/pie_chart_storage.jsp"/>
+		<jsp:include page="components/stats/pie_chart_order.jsp"/>
 	</div>
 	<jsp:include page="components/stats/combochart.jsp"/>
 	

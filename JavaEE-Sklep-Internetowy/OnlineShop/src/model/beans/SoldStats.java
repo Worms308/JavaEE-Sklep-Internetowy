@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import dao.InitDB;
+import dao.PhoneDAO;
 import entities.Phone;
 import entities.Sale;
 
@@ -154,5 +156,65 @@ public class SoldStats {
 		
 		result.deleteCharAt(result.length()-1);
 		return result.toString();
+	}
+	
+	private List<Double> findPhoneTrend(Phone phone) {
+		List<Double> result = new ArrayList<>();
+		
+		List<Phone> phones = InitDB.getPhoneDAO().getAllPhone();
+		Date start = this.getStartDate();
+		
+		while(start.before(new Date())) {
+			List<Phone> phonesInternal = this.soldLastMonth(start);
+
+			result.add((double) this.calcPhonesNumber(phonesInternal, phones, phone.getPhoneId()-1));
+			
+			start = this.addMonth(start);
+		}
+		result.remove(result.size()-1);
+		return result;
+	}
+	
+	private double estimatedTrendValue(List<Double> trend) {
+		double result = 0.0;
+		for (int i=trend.size()-1, j=0;i>0 && j<=3;--i, ++j) {
+			double difference = trend.get(i) - trend.get(i-1);
+			switch (j) {
+			case 0:
+				result += difference * 1.5;
+				break;
+			case 1:
+				result += difference * 1;
+				break;
+			case 2:	
+				result += difference * 0.6;
+				break;
+			case 3:	
+				result += difference * 0.3;
+				break;
+				
+			}
+		}
+		return result;
+	}
+	
+	public List<Phone> getEstimatedOrder() {
+		PhoneDAO phoneDAO = InitDB.getPhoneDAO();
+		List<Phone> phones = phoneDAO.getAllPhone();
+		List<Phone> result = new ArrayList<>();
+		
+		for (Phone it:phones) {
+			double estimated = this.estimatedTrendValue(this.findPhoneTrend(it));
+			int roundEstimated = (int)Math.ceil(estimated);
+			Phone tmp = new Phone();
+			tmp.setManufacturer(it.getManufacturer());
+			tmp.setModel(it.getModel());
+			tmp.setQuantity(roundEstimated - phoneDAO.getPhoneByID(it.getPhoneId()).getQuantity());
+			
+			if (tmp.getQuantity() > 0)
+				result.add(tmp);
+		}
+		
+		return result;
 	}
 }
