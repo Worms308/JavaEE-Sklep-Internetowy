@@ -1,4 +1,4 @@
-﻿* {
+* {
   scroll-behavior: smooth;
 }
 
@@ -615,35 +615,30 @@ select {
   margin-top: -5px;
 }
 
-.buyer_area {
-  width: 50%;
-  float: left;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 70px;
+.buyer_area{
+	width: 50%;
+	float: left;
+	display: flex;
+	justify-content: center;
+	margin-bottom: 70px;
 }
 
-.delivery_area {
-  width: 50%;
-  float: left;
-  display: flex;
-  justify-content: center;
+.delivery_area{
+	width: 50%;
+	float: left;
+	display: flex;
+	justify-content: center;
 }
 
-.radio_btn {
-  width: auto !important;
+.radio_btn{
+	width: auto !important;
 }
 
-.payment_info {
-  margin-right: -35px;
+.payment_info{
+	margin-right: -35px;
 }
 
 /*ADMIN*/
-
-.admin-area h1 {
-  text-align: center;
-  margin-bottom: 50px;
-}
 
 .admin-area {
   text-align: center;
@@ -662,41 +657,80 @@ select {
   justify-content: center;
 }
 
-.button-area {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 100px;
+.admin-area h1{
+	text-align: center;
+	margin-bottom: 50px;
 }
 
-.admin-btn {
-  margin-right: 20px;
+.fa-user-shield{
+	font-size: 40px;
+	margin-top: 100px;
+	text-align: center;
 }
 
-.user-list-table td {
-  width: 150px;
+.admin_icon{
+	display: flex;
+	justify-content: center;
 }
 
-.fa-arrow-down {
-  color: red;
+.button-area{
+	display: flex;
+	justify-content: center;
+	margin-bottom: 100px;
 }
 
-.fa-arrow-up {
-  color: green;
+.admin-btn{
+	margin-right: 20px;
 }
 
-.input-admin {
-  width: 90%;
+.user-list-table td{
+	width: 150px;
 }
 
-input[type="submit"] {
-  width: 50%;
-  cursor: pointer;
+.fa-arrow-down{
+	color: red;
 }
 
-.admin-form {
-  margin-bottom: 50px;
+
+.fa-arrow-up{
+	color: green;
 }
 
-.buyer_offline_info {
-  width: 50%;
+.input-admin{
+	width: 90%;
+}
+
+input[type="submit"]{
+	width: 50%;
+	cursor: pointer;
+}
+
+.admin-form{
+	margin-bottom: 50px;
+}
+
+/* Promocja */
+.strikethrough {
+  position: relative;
+  color: #b70c0c;
+}
+.strikethrough:before {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 50%;
+  right: 0;
+  border-top: 5px solid;
+  border-color: inherit;
+	
+  -webkit-transform:rotate(-12deg);
+  -moz-transform:rotate(-12deg);
+  -ms-transform:rotate(-12deg);
+  -o-transform:rotate(-12deg);
+  transform:rotate(-12deg);
+}
+
+/* Rating */
+.checked{
+	color: #19247C;
 }

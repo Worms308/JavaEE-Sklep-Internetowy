@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <div class="all">
 	<div class="product_space">
@@ -68,13 +69,82 @@
 							<th>Kamera</th>
 							<td>${phone.camera} MPX</td>
 						</tr>
+						<tr>
+							<th>Ocena </th>
+							<c:choose>
+								<c:when test="${phone.rating <= 1.5}">
+									<td> <span class="fa fa-star checked"></span>
+										<span class="fa fa-star"></span>
+										<span class="fa fa-star"></span>
+										<span class="fa fa-star"></span>
+										<span class="fa fa-star"></span>
+									</td>
+								</c:when>
+								<c:when test="${phone.rating > 1.5 && phone.rating <= 2.5}">
+									<td> <span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star"></span>
+										<span class="fa fa-star"></span>
+										<span class="fa fa-star"></span>
+									</td>
+								</c:when>
+								<c:when test="${phone.rating > 2.5 && phone.rating <= 3.5}">
+									<td> <span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star"></span>
+										<span class="fa fa-star"></span>
+									</td>
+								</c:when>
+								<c:when test="${phone.rating > 3.5 && phone.rating <= 4.5}">
+									<td> <span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star"></span>
+									</td>
+								</c:when>
+								<c:when test="${phone.rating > 4.5}">
+									<td> <span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+										<span class="fa fa-star checked"></span>
+									</td>
+								</c:when>
+							</c:choose>
+						</tr>
 				 </table>
 				 
+				 <div class="rating text-center">
+					
+				</div>	
+
 				 <div class="price">
-				 <b>Cena:</b> <span class="price__value">${phone.price }</span>
+					 <c:choose>
+					 	<c:when test="${phone.discount > 0}">
+					 		<c:set var="price_discount" scope = "session" value="${phone.price - phone.discount*phone.price}"/>
+							<b>Cena przed obniżką:</b>
+							<span class="strikethrough price__value">
+							 	<fmt:parseNumber type="number" pattern="#.##" value="${phone.price}"/> zł
+							 </span>
+							 <br></br>
+							<b>Cena po obniżce:</b> 
+							<span class="price__value">
+								<fmt:parseNumber type="number" pattern="#.##" value="${price_discount}"/> zł 
+							</span>
+					 	</c:when>
+						 <c:otherwise>
+						 	<b>Cena:</b> 
+						 	<span class="price__value">
+						 		<fmt:parseNumber type="number" pattern="#.##" value="${phone.price}"/> zł
+						 	</span>
+						 </c:otherwise>
+					 </c:choose>
 				 </div>
+				
+				</div>
 				 
-			</div>
 		</div>
 		
 		<div class="info_single">
